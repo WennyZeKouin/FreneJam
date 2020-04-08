@@ -1,4 +1,7 @@
 sceneSetups:
 - path: Assets/Scenes/Patrick_Scene_Code.unity
   isLoaded: 1
+  isActive: 0
+- path: Assets/Scenes/Eloise_Sce,e.unity
+  isLoaded: 1
   isActive: 1
