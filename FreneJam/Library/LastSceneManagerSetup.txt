@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Eloise_Sce,e.unity
+- path: Assets/Scenes/Trump/Eloize.unity
   isLoaded: 1
   isActive: 1
