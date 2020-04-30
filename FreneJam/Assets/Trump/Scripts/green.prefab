@@ -159,3 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3749831cbfe599849aae3231459b6f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Ghome: {fileID: 8313980298088059507, guid: 0667c2d1a3c677b41b62d0d452e6dc14, type: 3}
+  Yhome: {fileID: 642630040018249046, guid: 8277ab30bbe9f3a45af5d1180160f22f, type: 3}
+  Bhome: {fileID: 1111857671342922288, guid: ae9fcfc32c9ccd74ba47b5a0fa0f5f10, type: 3}
+  Rhome: {fileID: 6693658485523545802, guid: b3ef03666632f5f4db9f7b8445b6a468, type: 3}

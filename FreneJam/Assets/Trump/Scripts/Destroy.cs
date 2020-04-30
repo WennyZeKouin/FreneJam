@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Destroy : MonoBehaviour
 {
+  
+
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.name == "Cgreen")
@@ -12,5 +14,6 @@ public class Destroy : MonoBehaviour
 
         }
 
+       
     }
 }
