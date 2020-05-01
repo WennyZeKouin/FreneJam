@@ -1,0 +1,25 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Road_Blocks_Script : MonoBehaviour
+{
+    public GameObject Road_Block;
+    float Time_Left;
+    // Start is called before the first frame update
+    void Start()
+    {
+        Time_Left = 20;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Time_Left -= Time.deltaTime;
+
+        if (Time_Left <= 0) 
+        {
+            Destroy(this.gameObject);
+        }
+    }    
+}
