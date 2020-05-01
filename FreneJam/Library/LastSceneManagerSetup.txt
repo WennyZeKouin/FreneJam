@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Trump/Eloize.unity
+- path: Assets/Scenes/Trump/Test agent map.unity
   isLoaded: 1
   isActive: 1

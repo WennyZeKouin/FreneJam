@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 950, y: 548}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 498}
   m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 72
+  controlID: 29
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 73
+  controlID: 30
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 224}
   m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 74
+  controlID: 31
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -362,22 +362,22 @@ MonoBehaviour:
     m_ReferencingInstanceIDs: 
     m_SceneHandles: 
     m_ShowAllHits: 0
-    m_SearchArea: 1
+    m_SearchArea: 0
     m_Folders:
-    - Assets/Scenes/Trump/Patrick
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes/Trump/Patrick
+  - Assets
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: F:\GitHub\FreneJam\FreneJam
+  m_LastProjectPath: D:\Unity Game Jam\FreneJam\FreneJam
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 125}
-    m_SelectedIDs: cc090000
-    m_LastClickedID: 2508
-    m_ExpandedIDs: 00000000a0090000cc0900004e0a0000520a00007e0a0000e00a0000960b0000ba0c00008237000000ca9a3b
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 1a2b0000
+    m_LastClickedID: 11034
+    m_ExpandedIDs: 000000001a2b0000462b0000c62b0000ca2b0000f62b0000562c00000c2d00002c2e0000323c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -405,7 +405,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a00900004e0a0000520a00007e0a0000e00a0000960b0000ba0c000082370000
+    m_ExpandedIDs: 000000001a2b0000462b0000c62b0000ca2b0000f62b0000562c00000c2d00002c2e0000323c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -459,7 +459,7 @@ MonoBehaviour:
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
-  m_DirectoriesAreaWidth: 115
+  m_DirectoriesAreaWidth: 225
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -523,10 +523,10 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 9c0b0000
-      m_LastClickedID: 0
-      m_ExpandedIDs: defbffff52140000641400005a1600003c1900009e190000
+      scrollPos: {x: 0, y: 2030}
+      m_SelectedIDs: 48d5ffff
+      m_LastClickedID: -10936
+      m_ExpandedIDs: aef5ffff4ef6ffff70f6ffff92f6ffffecf7ffff1a5f0000686400000e650000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -581,9 +581,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -2.223495, y: 1.1507869, z: -10.452316}
+    m_Target: {x: -1.4663987, y: -6.9355226, z: -3.3128805}
     speed: 2
-    m_Value: {x: -2.223495, y: 1.1507869, z: -10.452316}
+    m_Value: {x: -1.4663987, y: -6.9355226, z: -3.3128805}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -611,13 +611,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.4739903, y: 0.009527143, z: -0.005126344, w: 0.8804636}
+    m_Target: {x: -0.32994786, y: 0.5177461, z: -0.22586437, w: -0.7563456}
     speed: 2
-    m_Value: {x: 0.4739903, y: 0.009527143, z: -0.005126344, w: 0.8804636}
+    m_Value: {x: -0.32994786, y: 0.5177461, z: -0.22586437, w: -0.7563456}
   m_Size:
-    m_Target: 3.145345
+    m_Target: 0.40416732
     speed: 2
-    m_Value: 3.145345
+    m_Value: 0.40416732
   m_Ortho:
     m_Target: 0
     speed: 2
