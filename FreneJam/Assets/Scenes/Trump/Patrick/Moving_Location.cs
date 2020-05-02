@@ -7,6 +7,7 @@ public class Moving_Location : MonoBehaviour
 {   
     public GameObject BaracadeGameFab;
     public GameObject DealerGameFab;
+    public GameObject People;
     public Transform Transf;
     float CameraPosX = 0.0f;
     float CameraPosZ = 0.0f;
@@ -40,8 +41,16 @@ public class Moving_Location : MonoBehaviour
         Spawning_Timer_UV_Light = 10;
 
         // Trouve toute les route possible
-        Amount_Roads = GameObject.FindGameObjectsWithTag("Road");        
-        
+        Amount_Roads = GameObject.FindGameObjectsWithTag("Road");
+        //Spawner 10 personne pour test
+        int a = 10;
+        while (a > 0) 
+        {
+            Spawn_People();
+            a -= 1;
+        }
+
+
     }
 
     // Update is called once per frame
@@ -92,7 +101,7 @@ public class Moving_Location : MonoBehaviour
         // Spawn a Roadblock or dealer
         if (Input.GetKeyDown("f"))
         {
-            SpawnRoadBlock();
+            SpawnRoadBlock();            
         }
         else if (Input.GetKeyDown("e"))
         {
@@ -177,4 +186,13 @@ public class Moving_Location : MonoBehaviour
         }
     }
 
+
+
+    // Spawn all the people
+
+    public void Spawn_People()
+    {
+        GameObject People_Spawn = Instantiate(People) as GameObject;
+        People_Spawn.transform.position = new Vector3(-8.072751f, -14.166f, -2.928442f);
+    }
 }

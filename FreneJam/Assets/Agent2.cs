@@ -20,13 +20,12 @@ public class Agent2 : MonoBehaviour
 
         for (int i = 0; i < Variable.Length; i++) 
         {
-            if (Variable[i].GetComponent<Road_Script>().Road_State != 0)
+            if (Variable[i].GetComponent<Road_Script>().Road_State == 1)
             {
                
 
                 Vector3 Coordonnees_Du_Cube = Variable[i].GetComponent<Road_Script>().GetLocation_Cube();
-
-                Debug.Log("On a les coordonnées");
+                
 
                 agent = this.GetComponent<NavMeshAgent>();
                 agent.SetDestination(Coordonnees_Du_Cube);

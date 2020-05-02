@@ -9,12 +9,16 @@ public class Road_Script : MonoBehaviour
     public Material UV_Light_Matt;
     public Material Normal_Matt;
     private float CounterLife = 0.0f;
-
     public int Road_State = 0;
+    public GameObject People;
+
+
     // 0 is neutral state
     // 1 is Sanitizer
     // 2 is Syringe
     // 3 is UV Light
+
+
 
 
 
