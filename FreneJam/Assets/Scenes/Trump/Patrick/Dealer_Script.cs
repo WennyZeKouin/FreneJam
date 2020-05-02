@@ -20,6 +20,12 @@ public class Dealer_Script : MonoBehaviour
         if (Time_Left <= 0)
         {
             Destroy(this.gameObject);
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Moving_Location>().Available_Units += 7;
         }
     }
+
+        public Vector3 GetLocation_Dealer() 
+        {
+            return this.gameObject.GetComponent<Transform>().position;
+        }
 }
