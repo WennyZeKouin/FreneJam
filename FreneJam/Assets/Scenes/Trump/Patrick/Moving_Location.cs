@@ -10,7 +10,7 @@ public class Moving_Location : MonoBehaviour
     public Transform Transf;
     float CameraPosX = 0.0f;
     float CameraPosZ = 0.0f;
-    private GameObject[] Amount_Roads;
+    public GameObject[] Amount_Roads;
 
 
     // How many units do you have at your disposal
