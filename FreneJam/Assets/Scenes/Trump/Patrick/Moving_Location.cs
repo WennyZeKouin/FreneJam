@@ -56,6 +56,6 @@ public class Moving_Location : MonoBehaviour
     public void SpawnDealer()
     {
         GameObject RoadBlock = Instantiate(DealerGameFab) as GameObject;
-        RoadBlock.transform.position = new Vector3(CameraPosX, -13, CameraPosZ);
+        RoadBlock.transform.position = new Vector3(CameraPosX, -14, CameraPosZ);
     }
 }

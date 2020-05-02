@@ -4,59 +4,35 @@ using UnityEngine;
 
 public class Pharmacie_Spawner : MonoBehaviour
 {
-    public GameObject Spawn1;
-    public GameObject Spawn2;
-    public GameObject Spawn3;
-    public GameObject Spawn4;
-    public GameObject Spawn5;
-    public GameObject Spawn6;
-    public GameObject Spawn7;
-
-    public Material Sanitizer;
-    public Material Syringe;
+    private GameObject[] RoadCubes;
+    int Amount_Roads;
+    // public Material Sanitizer;
+    // public Material Syringe;
     // Start is called before the first frame update
     void Start()
     {
+        // Find all the different Roads
+        RoadCubes = GameObject.FindGameObjectsWithTag("Road");
+        Amount_Roads = RoadCubes.Length;
         // Which spawn will be activated:        
-        Choose_Spawn_Soap();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown("y")) 
+        {
+            Choose_Spawn_Soap();
+        }
     }
 
     private void Choose_Spawn_Soap() 
     {
-        int spawner = Random.Range(0, 7);
-        if (spawner == 0)
-        {
-            Spawn1.GetComponent<Renderer>().material = Sanitizer;
-        }
-        else if (spawner == 1)
-        {
-            Spawn2.GetComponent<Renderer>().material = Sanitizer;
-        }
-        else if (spawner == 2)
-        {
-            Spawn3.GetComponent<Renderer>().material = Sanitizer;
-        }
-        else if (spawner == 3)
-        {
-            Spawn4.GetComponent<Renderer>().material = Sanitizer;
-        }
-        else if (spawner == 4)
-        {
-            Spawn5.GetComponent<Renderer>().material = Sanitizer;
-        }
-        else if (spawner == 5)
-        {
-            Spawn6.GetComponent<Renderer>().material = Sanitizer;
-        }
-        else if (spawner == 6)
-        {
-            Spawn7.GetComponent<Renderer>().material = Sanitizer;
-        }
+        
+        int spawner = Random.Range(0, Amount_Roads);
+        //RoadCubes[spawner].GetComponent<Renderer>().material = Sanitizer;
+        RoadCubes[spawner].GetComponent<Specific_Cube>().Activate_Pharmacie();
+        RoadCubes[spawner].GetComponent<Specific_Cube>().Time_Left = 10;
     }
 }
