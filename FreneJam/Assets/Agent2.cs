@@ -7,36 +7,54 @@ public class Agent2 : MonoBehaviour
 {
     public GameObject[] Variable;
    NavMeshAgent agent;
+    public bool Infected = false;
+    public bool Alive = true;
+    public bool Arrived = false;
+    public Material Infected_Matt;
 
     void Start()
     {
          Variable = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Moving_Location>().Amount_Roads;
 }
+    /*
+    agent = this.GetComponent<NavMeshAgent>();
+    agent.SetDestination(Coordonnees_Du_Cube);
+   */
 
-    
-   
     void Update()
     {
+        
+    }
 
-        for (int i = 0; i < Variable.Length; i++) 
+
+    public void NewDestination(Vector3 Target) 
+    {
+        this.Arrived = false;
+        agent = this.GetComponent<NavMeshAgent>();
+        agent.SetDestination(Target);
+    }
+
+    public void BecameInfected() 
+    {
+        if (Infected == false)
         {
-            if (Variable[i].GetComponent<Road_Script>().Road_State == 1)
+            if (Arrived == false) 
             {
-               
-
-                Vector3 Coordonnees_Du_Cube = Variable[i].GetComponent<Road_Script>().GetLocation_Cube();
-                
-
-                agent = this.GetComponent<NavMeshAgent>();
-                agent.SetDestination(Coordonnees_Du_Cube);
+                this.GetComponent<Renderer>().material = Infected_Matt;
+                Infected = true;
             }
+            else
+            {
+                Alive = false;
+                Destroy(gameObject);
+            }
+
         }
-     }
+        
 
-    
-   
 
-   
+
+        }       
 }
 
 

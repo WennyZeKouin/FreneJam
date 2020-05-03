@@ -10,8 +10,15 @@ public class Road_Script : MonoBehaviour
     public Material Normal_Matt;
     private float CounterLife = 0.0f;
     public int Road_State = 0;
-    public GameObject People;
 
+    public GameObject People;
+    private Vector3 Low_Position;
+    private Vector3 High_Position;
+
+    private void Start()
+    {
+        Set_Position();
+    }
 
     // 0 is neutral state
     // 1 is Sanitizer
@@ -19,7 +26,11 @@ public class Road_Script : MonoBehaviour
     // 3 is UV Light
 
 
-
+    public void Set_Position() 
+    {
+        Low_Position = new Vector3(this.GetComponent<Transform>().position.x - 0.5f, this.GetComponent<Transform>().position.y, this.GetComponent<Transform>().position.z - 0.5f);
+        High_Position = new Vector3(this.GetComponent<Transform>().position.x + 0.5f, this.GetComponent<Transform>().position.y, this.GetComponent<Transform>().position.z + 0.5f);
+    }
 
 
     public void Start_Countdown(int Item) 
@@ -45,11 +56,28 @@ public class Road_Script : MonoBehaviour
         {
             Return_Matt();
         }
+
+        GameObject[] Peeps = GameObject.FindGameObjectsWithTag("People");
+        for (int i = 0; i < Peeps.Length; i++) 
+        {            
+            Transform Peep_Location = Peeps[i].GetComponent<Transform>();
+            if (Road_State == 3 && Low_Position.x < Peep_Location.position.x && Peep_Location.position.x < High_Position.x && Low_Position.z < Peep_Location.position.z && Peep_Location.position.z < High_Position.z) 
+            {
+                Debug.Log("Walked over the UV");
+                Peeps[i].GetComponent<Agent2>().Arrived = true;
+                Peeps[i].GetComponent<Agent2>().BecameInfected();                
+            }
+            else 
+            {                
+                Peeps[i].GetComponent<Agent2>().Arrived = false;                
+            }
+        }
     }
 
     private void Return_Matt() 
     {        
         this.gameObject.GetComponent<Renderer>().material = Normal_Matt;
+        this.Road_State = 0;
     }
 
 
@@ -74,4 +102,11 @@ public class Road_Script : MonoBehaviour
     {
         return this.gameObject.GetComponent<Transform>().position;
     }
+
+    
+
+
+
+
+
 }

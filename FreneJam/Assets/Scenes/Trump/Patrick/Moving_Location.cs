@@ -49,6 +49,7 @@ public class Moving_Location : MonoBehaviour
             Spawn_People();
             a -= 1;
         }
+        
 
 
     }
@@ -58,7 +59,6 @@ public class Moving_Location : MonoBehaviour
     {
         // Update the UI      
         
-
 
         // Countdown for spawning new locations
         Spawning_Timer_Sanitizer -= Time.deltaTime;
@@ -87,7 +87,7 @@ public class Moving_Location : MonoBehaviour
 
         if (Spawning_Timer_Sanitizer < 0.0f) 
         {
-            Spawn_Sanitizer_Full();
+            Spawn_Sanitizer_Full();            
         }
         if (Spawning_Timer_Syringe < 0.0f) 
         {
@@ -154,7 +154,18 @@ public class Moving_Location : MonoBehaviour
             // Beginning destruction timer
             Amount_Roads[Sanitizer_Spawner].GetComponent<Road_Script>().Start_Countdown(1);
             // Changing the material
-            Amount_Roads[Sanitizer_Spawner].GetComponent<Road_Script>().Spawn_Sanitizer();            
+            Amount_Roads[Sanitizer_Spawner].GetComponent<Road_Script>().Spawn_Sanitizer();
+            
+            GameObject[] Peeps = GameObject.FindGameObjectsWithTag("People");
+            for (int i = 0; i < Peeps.Length; i++)
+            {
+                int Chance = Random.Range(0, 2);
+                if (Chance == 1)
+                {
+                    Peeps[i].GetComponent<Agent2>().NewDestination(Amount_Roads[Sanitizer_Spawner].GetComponent<Road_Script>().GetLocation_Cube());
+                }                
+                
+            }
         }
         
     }
@@ -171,6 +182,17 @@ public class Moving_Location : MonoBehaviour
             Amount_Roads[Syringe_Spawner].GetComponent<Road_Script>().Start_Countdown(2);
             // Changing the material
             Amount_Roads[Syringe_Spawner].GetComponent<Road_Script>().Spawn_Syringe();
+
+            GameObject[] Peeps = GameObject.FindGameObjectsWithTag("People");
+            for (int i = 0; i < Peeps.Length; i++)
+            {
+                int Chance = Random.Range(0, 2);
+                if (Chance == 1)
+                {
+                    Peeps[i].GetComponent<Agent2>().NewDestination(Amount_Roads[Syringe_Spawner].GetComponent<Road_Script>().GetLocation_Cube());
+                }
+
+            }
         }
     }
 
@@ -180,9 +202,20 @@ public class Moving_Location : MonoBehaviour
         Spawning_Timer_UV_Light = Random.Range(6, 10);
         if (Amount_Roads[UV_Spawner].GetComponent<Road_Script>().Road_State == 0)
         {
-            Amount_Roads[UV_Spawner].GetComponent<Road_Script>().Road_State = 2;
+            Amount_Roads[UV_Spawner].GetComponent<Road_Script>().Road_State = 3;
             Amount_Roads[UV_Spawner].GetComponent<Road_Script>().Start_Countdown(2);
             Amount_Roads[UV_Spawner].GetComponent<Road_Script>().Spawn_UV_Light();
+
+            GameObject[] Peeps = GameObject.FindGameObjectsWithTag("People");
+            for (int i = 0; i < Peeps.Length; i++)
+            {
+                int Chance = Random.Range(0, 2);
+                if (Chance == 1)
+                {
+                    Peeps[i].GetComponent<Agent2>().NewDestination(Amount_Roads[UV_Spawner].GetComponent<Road_Script>().GetLocation_Cube());
+                }
+
+            }
         }
     }
 
