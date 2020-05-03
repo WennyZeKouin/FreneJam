@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Moving_Location : MonoBehaviour
 {   
@@ -13,10 +14,23 @@ public class Moving_Location : MonoBehaviour
     float CameraPosZ = 0.0f;
     public GameObject[] Amount_Roads;
 
+    // A rajouter a l'UI et faire en sorte que des que ca deviens 0 on a un game overscreen.
+    public int People_Count = 100;
+    // Compteur avant que de nouvelle personne spawn
+    float People_Counter = 30;
+
+    // A rajouter a l'UI et si jamais il y a 10 bouteille de sanitizer et 5 eguille alors le joueur perdra 50 personne
+    public int Sanitizer_Count = 0;
+
+    public int Syringe_Count = 0;
+
+
+
+
 
     // How many units do you have at your disposal
     public int Available_Units = 10;
-
+    float Reinforcement_Counter = 15;
     // UI Stuff
     // Amount of police at your disposal
     
@@ -42,13 +56,8 @@ public class Moving_Location : MonoBehaviour
 
         // Trouve toute les route possible
         Amount_Roads = GameObject.FindGameObjectsWithTag("Road");
-        //Spawner 10 personne pour test
-        int a = 10;
-        while (a > 0) 
-        {
-            Spawn_People();
-            a -= 1;
-        }
+        //Spawner 10 personne pour test  
+        Spawn_Multi_People(10);
         
 
 
@@ -57,16 +66,51 @@ public class Moving_Location : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Verifie si les americain ont ramasser les objects
+        if (Syringe_Count == 5 && Sanitizer_Count == 10) 
+        {
+            People_Count -= 50;
+        }
+
+        // Verifie si le jeu est fini
+        if (People_Count <= 0) 
+        {
+            Debug.Log("Game Over");
+            Application.Quit();
+        }
+
+        
+
+        //Update Units available
+        Reinforcement_Counter -= Time.deltaTime;
+        if (Reinforcement_Counter < 0)         
+        {           
+            Available_Units += Random.Range(2, 6);
+            Reinforcement_Counter = 15;
+        }
+
+        // Spawn new people
+        People_Counter -= Time.deltaTime;
+        if (People_Counter < 0) 
+        {
+            Spawn_Multi_People(Random.Range(20, 30));
+            People_Counter = 30;
+        }
+
         // Update the UI      
         
 
         // Countdown for spawning new locations
         Spawning_Timer_Sanitizer -= Time.deltaTime;
+
         Spawning_Timer_Syringe -= Time.deltaTime;
+
         Spawning_Timer_UV_Light -= Time.deltaTime;
+
         // Move the Camera around and stop if from going out of bounds
         CameraPosX = Transf.position.x;
         CameraPosZ = Transf.position.z;
+
         if (Input.GetKeyDown("w") && CameraPosZ > -6) 
         {
             Transf.position += new Vector3(0, 0, -1);
@@ -85,15 +129,15 @@ public class Moving_Location : MonoBehaviour
         }     
         // Spawn syringe, sanitizer or UV light   
 
-        if (Spawning_Timer_Sanitizer < 0.0f) 
+        if (Spawning_Timer_Sanitizer < 0.0f && Sanitizer_Count < 10) 
         {
             Spawn_Sanitizer_Full();            
         }
-        if (Spawning_Timer_Syringe < 0.0f) 
+        if (Spawning_Timer_Syringe < 0.0f && Syringe_Count < 5) 
         {
             Spawn_Syringe_Full();
         }
-        if (Spawning_Timer_UV_Light < 0.0f) 
+        if (Spawning_Timer_UV_Light < 0.0f && People_Count > 0) 
         {
             Spawn_UV_Light_Full();
         }
@@ -132,6 +176,11 @@ public class Moving_Location : MonoBehaviour
             GameObject RoadBlock = Instantiate(DealerGameFab) as GameObject;
             RoadBlock.transform.position = new Vector3(CameraPosX, -14.3f, CameraPosZ);
             Available_Units -= 7;
+            GameObject[] Peeps = GameObject.FindGameObjectsWithTag("People");
+            for (int i = 0; i < Peeps.Length; i++)
+            {
+                Peeps[i].GetComponent<Agent2>().NewDestination(RoadBlock.transform.position);             
+            }
         }
         else 
         {
@@ -155,17 +204,21 @@ public class Moving_Location : MonoBehaviour
             Amount_Roads[Sanitizer_Spawner].GetComponent<Road_Script>().Start_Countdown(1);
             // Changing the material
             Amount_Roads[Sanitizer_Spawner].GetComponent<Road_Script>().Spawn_Sanitizer();
-            
-            GameObject[] Peeps = GameObject.FindGameObjectsWithTag("People");
-            for (int i = 0; i < Peeps.Length; i++)
+
+            if (GameObject.Find("Dealer(Clone)") == null) 
             {
-                int Chance = Random.Range(0, 2);
-                if (Chance == 1)
+                GameObject[] Peeps = GameObject.FindGameObjectsWithTag("People");
+                for (int i = 0; i < Peeps.Length; i++)
                 {
-                    Peeps[i].GetComponent<Agent2>().NewDestination(Amount_Roads[Sanitizer_Spawner].GetComponent<Road_Script>().GetLocation_Cube());
-                }                
-                
+                    int Chance = Random.Range(0, 2);
+                    if (Chance == 1)
+                    {
+                        Peeps[i].GetComponent<Agent2>().NewDestination(Amount_Roads[Sanitizer_Spawner].GetComponent<Road_Script>().GetLocation_Cube());
+                    }
+
+                }
             }
+            
         }
         
     }
@@ -183,15 +236,18 @@ public class Moving_Location : MonoBehaviour
             // Changing the material
             Amount_Roads[Syringe_Spawner].GetComponent<Road_Script>().Spawn_Syringe();
 
-            GameObject[] Peeps = GameObject.FindGameObjectsWithTag("People");
-            for (int i = 0; i < Peeps.Length; i++)
+            if (GameObject.Find("Dealer(Clone)") == null)
             {
-                int Chance = Random.Range(0, 2);
-                if (Chance == 1)
+                GameObject[] Peeps = GameObject.FindGameObjectsWithTag("People");
+                for (int i = 0; i < Peeps.Length; i++)
                 {
-                    Peeps[i].GetComponent<Agent2>().NewDestination(Amount_Roads[Syringe_Spawner].GetComponent<Road_Script>().GetLocation_Cube());
-                }
+                    int Chance = Random.Range(0, 2);
+                    if (Chance == 1)
+                    {
+                        Peeps[i].GetComponent<Agent2>().NewDestination(Amount_Roads[Syringe_Spawner].GetComponent<Road_Script>().GetLocation_Cube());
+                    }
 
+                }
             }
         }
     }
@@ -206,19 +262,22 @@ public class Moving_Location : MonoBehaviour
             Amount_Roads[UV_Spawner].GetComponent<Road_Script>().Start_Countdown(2);
             Amount_Roads[UV_Spawner].GetComponent<Road_Script>().Spawn_UV_Light();
 
-            GameObject[] Peeps = GameObject.FindGameObjectsWithTag("People");
-            for (int i = 0; i < Peeps.Length; i++)
+            if (GameObject.Find("Dealer(Clone)") == null)
             {
-                int Chance = Random.Range(0, 2);
-                if (Chance == 1)
-                {
-                    Peeps[i].GetComponent<Agent2>().NewDestination(Amount_Roads[UV_Spawner].GetComponent<Road_Script>().GetLocation_Cube());
-                }
 
+                GameObject[] Peeps = GameObject.FindGameObjectsWithTag("People");
+                for (int i = 0; i < Peeps.Length; i++)
+                {
+                    int Chance = Random.Range(0, 2);
+                    if (Chance == 1)
+                    {
+                        Peeps[i].GetComponent<Agent2>().NewDestination(Amount_Roads[UV_Spawner].GetComponent<Road_Script>().GetLocation_Cube());
+                    }
+
+                }
             }
         }
     }
-
 
 
     // Spawn all the people
@@ -226,6 +285,52 @@ public class Moving_Location : MonoBehaviour
     public void Spawn_People()
     {
         GameObject People_Spawn = Instantiate(People) as GameObject;
-        People_Spawn.transform.position = new Vector3(-8.072751f, -14.166f, -2.928442f);
+        int Rand_Valve = Random.Range(0,9);
+        if (Rand_Valve == 0) 
+        {
+            People_Spawn.transform.position = new Vector3(9f, -14.166f, -6f);
+        }
+        else if (Rand_Valve == 1)
+        {
+            People_Spawn.transform.position = new Vector3(-7f, -14.166f, -6f);
+        }
+        else if (Rand_Valve == 2)
+        {
+            People_Spawn.transform.position = new Vector3(-8f, -14.166f, 7f);
+        }
+        else if (Rand_Valve == 3)
+        {
+            People_Spawn.transform.position = new Vector3(9f, -14.166f, 7f);
+        }
+        else if (Rand_Valve == 4)
+        {
+            People_Spawn.transform.position = new Vector3(9f, -14.166f, 7f);
+        }
+        else if (Rand_Valve == 5)
+        {
+            People_Spawn.transform.position = new Vector3(9f, -14.166f, -3f);
+        }
+        else if (Rand_Valve == 6)
+        {
+            People_Spawn.transform.position = new Vector3(6f, -14.166f, -6f);
+        }
+        else if (Rand_Valve == 7)
+        {
+            People_Spawn.transform.position = new Vector3(0f, -14.166f, -6f);
+        }
+        else if (Rand_Valve == 8)
+        {
+            People_Spawn.transform.position = new Vector3(-5f, -14.166f, -6f);
+        }
+        
+    }
+
+    public void Spawn_Multi_People(int Amount) 
+    {
+        while (Amount > 0) 
+        {
+            Spawn_People();
+            Amount -= 1;
+        }
     }
 }
