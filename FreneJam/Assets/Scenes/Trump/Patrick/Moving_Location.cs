@@ -15,14 +15,15 @@ public class Moving_Location : MonoBehaviour
     public GameObject[] Amount_Roads;
 
     // A rajouter a l'UI et faire en sorte que des que ca deviens 0 on a un game overscreen.
-    public int People_Count = 100;
+    public int People_Count = 20;
     // Compteur avant que de nouvelle personne spawn
     float People_Counter = 30;
 
     // A rajouter a l'UI et si jamais il y a 10 bouteille de sanitizer et 5 eguille alors le joueur perdra 50 personne
-    public int Sanitizer_Count = 0;
 
-    public int Syringe_Count = 0;
+    // public int Sanitizer_Count = 0;
+
+    // public int Syringe_Count = 0;
 
 
 
@@ -48,11 +49,11 @@ public class Moving_Location : MonoBehaviour
     void Start()
     {        
         // Starts sanitizer spawner countdown
-        Spawning_Timer_Sanitizer = 10;
+        //Spawning_Timer_Sanitizer = 10;
         // Starts syringe spawner countdown
-        Spawning_Timer_Syringe = 10;
+        //Spawning_Timer_Syringe = 10;
         // Starts UV light spawner countdown
-        Spawning_Timer_UV_Light = 10;
+        Spawning_Timer_UV_Light = 5;
 
         // Trouve toute les route possible
         Amount_Roads = GameObject.FindGameObjectsWithTag("Road");
@@ -67,10 +68,12 @@ public class Moving_Location : MonoBehaviour
     void Update()
     {
         // Verifie si les americain ont ramasser les objects
+        /*
         if (Syringe_Count == 5 && Sanitizer_Count == 10) 
         {
             People_Count -= 50;
         }
+        */
 
         // Verifie si le jeu est fini
         if (People_Count <= 0) 
@@ -85,7 +88,7 @@ public class Moving_Location : MonoBehaviour
         Reinforcement_Counter -= Time.deltaTime;
         if (Reinforcement_Counter < 0)         
         {           
-            Available_Units += Random.Range(2, 6);
+            Available_Units += Random.Range(1, 3);
             Reinforcement_Counter = 15;
         }
 
@@ -93,17 +96,18 @@ public class Moving_Location : MonoBehaviour
         People_Counter -= Time.deltaTime;
         if (People_Counter < 0) 
         {
-            Spawn_Multi_People(Random.Range(20, 30));
-            People_Counter = 30;
+            Spawn_Multi_People(Random.Range(10, 20));
+            People_Counter = 15;
         }
 
         // Update the UI      
         
 
         // Countdown for spawning new locations
-        Spawning_Timer_Sanitizer -= Time.deltaTime;
 
-        Spawning_Timer_Syringe -= Time.deltaTime;
+        //Spawning_Timer_Sanitizer -= Time.deltaTime;
+
+        // Spawning_Timer_Syringe -= Time.deltaTime;
 
         Spawning_Timer_UV_Light -= Time.deltaTime;
 
@@ -128,15 +132,17 @@ public class Moving_Location : MonoBehaviour
             Transf.position += new Vector3(1, 0, 0);
         }     
         // Spawn syringe, sanitizer or UV light   
-
+        /*
         if (Spawning_Timer_Sanitizer < 0.0f && Sanitizer_Count < 10) 
         {
             Spawn_Sanitizer_Full();            
         }
         if (Spawning_Timer_Syringe < 0.0f && Syringe_Count < 5) 
+           
         {
             Spawn_Syringe_Full();
         }
+        */
         if (Spawning_Timer_UV_Light < 0.0f && People_Count > 0) 
         {
             Spawn_UV_Light_Full();
@@ -147,10 +153,12 @@ public class Moving_Location : MonoBehaviour
         {
             SpawnRoadBlock();            
         }
+        /*
         else if (Input.GetKeyDown("e"))
         {
             SpawnDealer();
         }
+        */
 
     }
 
@@ -163,8 +171,7 @@ public class Moving_Location : MonoBehaviour
             Available_Units -= 5;
         }
         else 
-        {
-            Debug.Log("Not enough units available");
+        {            
         }
         
     }
@@ -183,14 +190,16 @@ public class Moving_Location : MonoBehaviour
             }
         }
         else 
-        {
-            Debug.Log("Not enough units available");
+        {            
         }
         
     }
 
 
     // Spawn and change textures and everything else for the UV, Sanitizer and Syringe
+
+
+    /*
     public void Spawn_Sanitizer_Full() 
     {
         int Sanitizer_Spawner = Random.Range(0, Amount_Roads.Length);
@@ -222,7 +231,8 @@ public class Moving_Location : MonoBehaviour
         }
         
     }
-
+    */
+    /*
     public void Spawn_Syringe_Full() 
     {
         int Syringe_Spawner = Random.Range(0, Amount_Roads.Length);
@@ -251,7 +261,7 @@ public class Moving_Location : MonoBehaviour
             }
         }
     }
-
+    */
     public void Spawn_UV_Light_Full() 
     {
         int UV_Spawner = Random.Range(0, Amount_Roads.Length);
@@ -267,12 +277,9 @@ public class Moving_Location : MonoBehaviour
 
                 GameObject[] Peeps = GameObject.FindGameObjectsWithTag("People");
                 for (int i = 0; i < Peeps.Length; i++)
-                {
-                    int Chance = Random.Range(0, 2);
-                    if (Chance == 1)
-                    {
+                {                    
                         Peeps[i].GetComponent<Agent2>().NewDestination(Amount_Roads[UV_Spawner].GetComponent<Road_Script>().GetLocation_Cube());
-                    }
+                    
 
                 }
             }

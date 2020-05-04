@@ -68,6 +68,8 @@ public class Road_Script : MonoBehaviour
                 Camera.GetComponent<Moving_Location>().People_Count -= 1;
                 Debug.Log(Camera.GetComponent<Moving_Location>().People_Count);
             }
+
+            /*
             else if (Road_State == 2 && Low_Position.x < Peep_Location.position.x && Peep_Location.position.x < High_Position.x && Low_Position.z < Peep_Location.position.z && Peep_Location.position.z < High_Position.z)
             {                
                 Camera.GetComponent<Moving_Location>().Syringe_Count += 1;
@@ -79,6 +81,7 @@ public class Road_Script : MonoBehaviour
                 Camera.GetComponent<Moving_Location>().Sanitizer_Count += 1;
                 Return_Matt();
             }
+            */
         }
     }
 

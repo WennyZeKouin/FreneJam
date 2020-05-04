@@ -9,7 +9,7 @@ public class Road_Blocks_Script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time_Left = 20;
+        Time_Left = 5;
     }
 
     // Update is called once per frame
