@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366756, g: 0.48427194, b: 0.5645252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3703,7 +3703,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Remaining RoadBlocks:'
+  m_Text: 'Move : W A S D
+
+    Place Police : F'
 --- !u!222 &168456524
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20837,7 +20839,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0.38888884, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -20903,7 +20905,7 @@ MonoBehaviour:
   People: {fileID: 8526499008162792212, guid: 4c1ea0f18ae5ae742b819566d01ed249, type: 3}
   Transf: {fileID: 1076582725}
   Amount_Roads: []
-  People_Count: 100
+  People_Count: 20
   Available_Units: 10
 --- !u!1001 &1076899696
 PrefabInstance:
