@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.SceneManagement;
 
 public class Moving_Location : MonoBehaviour
 {   
@@ -46,7 +45,7 @@ public class Moving_Location : MonoBehaviour
 
     private float Spawning_Timer_UV_Light;
 
-    static float timerGameOver;
+    //static float timerGameOver;
     
     // Start is called before the first frame update
     void Start()
@@ -77,8 +76,8 @@ public class Moving_Location : MonoBehaviour
             People_Count -= 50;
         }
         */
-        timerGameOver += Time.deltaTime;
-        GuiText.Text=timerGameOver.ToString();
+        //timerGameOver += Time.deltaTime;
+        //Timer.Text=timerGameOver.ToString();
         // Verifie si le jeu est fini
         if (People_Count <= 0) 
         {
