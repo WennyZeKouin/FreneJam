@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Trump/Scene/Adrien 2.unity
+- path: Assets/Scenes/Trump/Scene/Game.unity
   isLoaded: 1
   isActive: 1

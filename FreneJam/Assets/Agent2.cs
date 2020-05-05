@@ -33,6 +33,7 @@ public class Agent2 : MonoBehaviour
 
     public void BecameInfected() 
     {
+        ScoreText.scoreValue -= 1;
         Destroy(gameObject);
     }           
 }

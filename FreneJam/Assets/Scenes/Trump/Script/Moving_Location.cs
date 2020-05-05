@@ -82,7 +82,7 @@ public class Moving_Location : MonoBehaviour
         if (People_Count <= 0) 
         {
             Debug.Log("Game Over");
-            Application.Quit();
+            //Application.Quit(); lol mdr Eloïse 
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 

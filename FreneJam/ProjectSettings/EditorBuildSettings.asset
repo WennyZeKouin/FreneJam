@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Trump/Scene/s_menuRetry.unity
+    path: Assets/Scenes/Trump/Scene/MenuStart.unity
     guid: 85a614d2a889ed74cbbd904e91f06299
   - enabled: 1
-    path: Assets/Scenes/Trump/Scene/Eloize.unity
+    path: Assets/Scenes/Trump/Scene/Game.unity
     guid: c3e0cb15826b7874e9a673d87936f8fe
   - enabled: 1
-    path: Assets/Scenes/Trump/Scene/s_menu.unity
+    path: Assets/Scenes/Trump/Scene/Menu_GameOver.unity
     guid: 1a2aa257560d24d4692cfa84d21f8874
   m_configObjects: {}
