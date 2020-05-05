@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Trump/Scene/Game.unity
+- path: Assets/Scenes/Trump/Scene/Menu_GameOver.unity
   isLoaded: 1
   isActive: 1
